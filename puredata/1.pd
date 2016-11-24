@@ -1,0 +1,83 @@
+#N canvas 0 53 1366 715 10;
+#X obj 538 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 544 82 openpanel;
+#X msg 552 127 open \$1;
+#X obj 539 169 readsf~;
+#X msg 486 133 1;
+#X obj 530 272 dac~;
+#X obj 538 208 *~ 0.1;
+#X obj 399 247 tabwrite~ array1;
+#X obj 410 200 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 667 253 env~;
+#X obj 664 293 - 100;
+#X obj 658 333 s toRVU;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array array1 100 float 5;
+#A 0 -0.0297455 -0.0283936 -0.0249725 -0.0198212 -0.0137695 -0.00802002
+-0.00336914 -7.01904e-05 0.00198059 0.00321655 0.00409241 0.0047699
+0.00510254 0.0046814 0.00333252 0.0015686 0.000143433 -0.000430298
+0.000311279 0.00258179 0.00602112 0.0100311 0.0139954 0.0170624 0.0185516
+0.018634 0.0179718 0.0168976 0.0155029 0.0139221 0.0122223 0.010556
+0.00933533 0.00880432 0.00888062 0.00974121 0.011734 0.0147522 0.0182068
+0.0214478 0.0239044 0.0250305 0.0244934 0.0224609 0.019577 0.0164764
+0.0135712 0.0112213 0.00968933 0.00882568 0.00814209 0.00731506 0.00646362
+0.00609741 0.00687561 0.00916138 0.0125549 0.0161591 0.0191956 0.0210083
+0.0209137 0.0184998 0.0140442 0.00834656 0.0021637 -0.00388794 -0.00915833
+-0.013269 -0.0161102 -0.0172913 -0.0164642 -0.0139587 -0.0102814 -0.00577393
+-0.00098877 0.00343933 0.00689392 0.00879822 0.00936279 0.00935974
+0.00902405 0.00849915 0.00805359 0.00726929 0.00580444 0.00421448 0.00288391
+0.00189514 0.00166931 0.00228577 0.00335388 0.00465393 0.00577087 0.00621643
+0.0058197 0.00441589 0.00227661 2.44141e-05 -0.00244751 -0.0052002
+;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 49 309 graph;
+#X obj 463 454 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 545 456 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 540 396 r toLVU;
+#X obj 457 398 r toRVU;
+#X obj 726 288 - 100;
+#X obj 727 335 s toLVU;
+#X text 610 43 Cliquez ici pour ouvrir un fichier son au format wave
+;
+#X text 636 190 Cette case sert à réduire ou augmenter le volume
+à laquelle le fichier sera lu. S'il est inférieur à 1 \, le son
+sera réduit \, s'il est supérieur à 1 \, il augmentera et s'il est
+égal à 1 \, le son sortira sans motification;
+#X text 561 43 <-------;
+#X text 588 208 <-----;
+#X text 772 248 Cette fonction sert à estimer le niveau sonore en
+dB;
+#X text 718 249 <------;
+#X text 830 327 Les résultats sont envoyés à des VU-mètre. L'un
+correspond à l'enceint de droite alors que lautre correspond à celle
+de gauche.;
+#X text 421 585 Les VU-mètre \, R est pour right \, donc l'enceinte
+de droite et L est pour left \, donc correspond à l'enceinte de gauche.
+;
+#X text 21 200 La fonction tabwrite envoie le spectre sonore sur un
+tableau de sorte que l'on peut observer à un instant son allure. Cliquez
+sur l'objet bang pour envoyer les données au tableau;
+#X text 362 198 ------>;
+#X text 37 453 Le tableau où sont envoyer les données;
+#X text 14 43 Lire un fichier audio \, au format wav sur PureData;
+#X text 384 132 Cliquez ici --> pour lancer la lecture du fichier audio
+;
+#X text 781 331 <-----;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 6 0 5 0;
+#X connect 6 0 5 1;
+#X connect 6 0 7 0;
+#X connect 6 0 9 0;
+#X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 9 0 17 0;
+#X connect 10 0 11 0;
+#X connect 15 0 14 0;
+#X connect 16 0 13 0;
+#X connect 17 0 18 0;

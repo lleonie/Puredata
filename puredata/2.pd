@@ -1,0 +1,98 @@
+#N canvas 0 53 1366 715 10;
+#X obj 548 57 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 554 92 openpanel;
+#X msg 562 137 open \$1;
+#X obj 549 179 readsf~;
+#X msg 496 143 1;
+#X obj 540 346 dac~;
+#X obj 548 282 *~ 0.1;
+#X obj 409 321 tabwrite~ array1;
+#X obj 396 279 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 677 327 env~;
+#X obj 674 367 - 100;
+#X obj 668 407 s toRVU;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array array1 100 float 5;
+#A 0 -0.0297455 -0.0283936 -0.0249725 -0.0198212 -0.0137695 -0.00802002
+-0.00336914 -7.01904e-05 0.00198059 0.00321655 0.00409241 0.0047699
+0.00510254 0.0046814 0.00333252 0.0015686 0.000143433 -0.000430298
+0.000311279 0.00258179 0.00602112 0.0100311 0.0139954 0.0170624 0.0185516
+0.018634 0.0179718 0.0168976 0.0155029 0.0139221 0.0122223 0.010556
+0.00933533 0.00880432 0.00888062 0.00974121 0.011734 0.0147522 0.0182068
+0.0214478 0.0239044 0.0250305 0.0244934 0.0224609 0.019577 0.0164764
+0.0135712 0.0112213 0.00968933 0.00882568 0.00814209 0.00731506 0.00646362
+0.00609741 0.00687561 0.00916138 0.0125549 0.0161591 0.0191956 0.0210083
+0.0209137 0.0184998 0.0140442 0.00834656 0.0021637 -0.00388794 -0.00915833
+-0.013269 -0.0161102 -0.0172913 -0.0164642 -0.0139587 -0.0102814 -0.00577393
+-0.00098877 0.00343933 0.00689392 0.00879822 0.00936279 0.00935974
+0.00902405 0.00849915 0.00805359 0.00726929 0.00580444 0.00421448 0.00288391
+0.00189514 0.00166931 0.00228577 0.00335388 0.00465393 0.00577087 0.00621643
+0.0058197 0.00441589 0.00227661 2.44141e-05 -0.00244751 -0.0052002
+;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 59 359 graph;
+#X obj 473 464 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 555 466 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 550 406 r toLVU;
+#X obj 467 408 r toRVU;
+#X obj 736 298 - 100;
+#X obj 737 345 s toLVU;
+#X obj 316 191 hsl 128 15 0 4 0 0 empty empty empty -2 -8 0 10 -4032
+-1 -1 10100 1;
+#X floatatom 285 50 5 0 0 0 - - -;
+#X obj 265 130 / 100;
+#X obj 547 232 *~;
+#X text 47 463;
+#X text -49 247 Attention \, pour éviter la saturation régler les
+paramètres de la glissière horizontale entre 0 et 4 max. Pour cela
+faite un clique droit et changer la valeur de la plage de sortie.;
+#X text -160 119 Sachant que les valeurs envoyées par le movuino ne
+sont pas comprise que entre 1 et 4 \, pour obtenir un changement du
+son continu on divise la valeur pour 100;
+#X text 201 127 ------->;
+#X text -111 38 Ici on peut observe les valeurs qui vont permettre
+de changer le volume.;
+#X text 213 48 ------>;
+#X text -34 189 Il s'agit du module permettant le contrôle du son
+---->;
+#X obj 728 226 osc~ 2;
+#X obj 709 124 knob 32 32 0 4 0 0 empty empty empty 0 -8 0 8 -45076
+-1 -1 0 1;
+#X floatatom 700 48 5 0 0 0 - - -;
+#X text 845 214 Voici le modulateur d'amplitude \, qui va faire varier
+à une certaine fréquence le volume \, c'est à dire qu'il va l'augmenter
+puis le diminuer en boucle. ;
+#X text 781 222 <------;
+#X text 745 128 <-----;
+#X text 789 126 Ici le module permettant d'accélérer cette modulation
+;
+#X obj 737 195 / 100;
+#X text 825 284 Attention \, pour éviter la saturation régler les
+paramètres du modulateur entre 0 et 4 max. Pour cela faite un clique
+droit et changer la valeur de la plage de sortie.;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 22 0;
+#X connect 4 0 3 0;
+#X connect 6 0 5 0;
+#X connect 6 0 5 1;
+#X connect 6 0 7 0;
+#X connect 6 0 9 0;
+#X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 9 0 17 0;
+#X connect 10 0 11 0;
+#X connect 15 0 14 0;
+#X connect 16 0 13 0;
+#X connect 17 0 18 0;
+#X connect 19 0 6 1;
+#X connect 20 0 21 0;
+#X connect 21 0 19 0;
+#X connect 22 0 6 0;
+#X connect 30 0 22 1;
+#X connect 31 0 37 0;
+#X connect 32 0 31 0;
+#X connect 37 0 30 0;

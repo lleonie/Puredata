@@ -1,0 +1,157 @@
+#N canvas 683 81 683 687 10;
+#X declare -lib mrpeach;
+#X obj 85 243 unpackOSC;
+#X obj 187 158 unpack 0 0 0 0;
+#X floatatom 187 189 3 0 0 0 - - -;
+#X floatatom 218 189 3 0 0 0 - - -;
+#X floatatom 250 189 3 0 0 0 - - -;
+#X floatatom 282 189 3 0 0 0 - - -;
+#X obj 96 281 print unpacked;
+#X obj 85 58 import mrpeach;
+#X floatatom 86 429 10 0 0 0 - - -;
+#X obj 86 392 f;
+#X obj 311 382 print other_messages;
+#X obj 85 118 udpreceive 7000;
+#X obj 86 465 print accX;
+#X floatatom 167 430 10 0 0 0 - - -;
+#X obj 167 393 f;
+#X floatatom 243 430 10 0 0 0 - - -;
+#X obj 243 393 f;
+#X obj 167 466 print accY;
+#X obj 243 466 print accZ;
+#X obj 86 331 routeOSC /osc/accX /osc/accY /osc/accZ;
+#X obj 741 419 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 747 454 openpanel;
+#X msg 755 499 open \$1;
+#X obj 742 541 readsf~;
+#X msg 694 484 1;
+#X obj 733 708 dac~;
+#X obj 741 644 *~ 0.1;
+#X obj 592 698 tabwrite~ array1;
+#X obj 566 662 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 887 656 env~;
+#X obj 486 307 hsl 128 15 0 4 0 0 empty empty empty -2 -8 0 10 -4032
+-1 -1 0 1;
+#X obj 425 285 / 100;
+#X obj 740 594 *~;
+#X obj 351 634 osc~ 2;
+#X obj 632 462 line~;
+#X msg 602 340 \$1 100;
+#X obj 205 499 knob 32 32 0 4 0 0 empty empty empty 0 -8 0 8 -45076
+-1 -1 0 1;
+#X obj 280 566 line~;
+#X msg 230 543 \$1 100;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array array1 100 float 5;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 499 45 graph;
+#X obj 865 227 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 871 262 openpanel;
+#X msg 879 307 open \$1;
+#X obj 871 352 readsf~;
+#X msg 818 292 1;
+#X obj 887 514 *~ 0.1;
+#X obj 886 464 *~;
+#X obj 1067 563 env~;
+#X obj 1160 315 hsl 128 15 0 4 0 0 empty empty empty -2 -8 0 10 -4032
+-1 -1 7366 1;
+#X obj 1152 266 / 100;
+#X msg 1141 367 \$1 100;
+#X obj 1134 427 line~;
+#X obj 883 413 +~;
+#X obj 974 318 osc~ 440;
+#X obj 1085 485 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1111 521 tabwrite~ array2;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array array2 100 float 5;
+#A 0 0.0411313 0.0225659 0.000624924 -0.0228649 -0.0467283 -0.0701874
+-0.0922303 -0.111728 -0.127827 -0.140159 -0.149092 -0.155201 -0.158888
+-0.160795 -0.161958 -0.162819 -0.163314 -0.164333 -0.167369 -0.173152
+-0.181412 -0.191342 -0.201802 -0.211694 -0.22027 -0.22698 -0.231618
+-0.234391 -0.235515 -0.235325 -0.234562 -0.233644 -0.232428 -0.230799
+-0.228897 -0.226878 -0.224732 -0.221884 -0.217573 -0.211674 -0.20401
+-0.193465 -0.179286 -0.162235 -0.143512 -0.123791 -0.10341 -0.0819619
+-0.0590783 -0.0360472 -0.014936 0.00336275 0.0185793 0.0306709 0.0406784
+0.0499053 0.0588419 0.0680219 0.0779589 0.0885309 0.100127 0.113711
+0.129181 0.145362 0.161121 0.1757 0.188955 0.200953 0.210878 0.217685
+0.22134 0.222694 0.222625 0.221678 0.219886 0.21686 0.211996 0.20528
+0.198132 0.192146 0.187296 0.183218 0.180743 0.180114 0.179775 0.178241
+0.175011 0.169426 0.15995 0.145481 0.126992 0.107302 0.0890698 0.0739234
+0.0626139 0.0548462 0.0499019 0.0469292 0.0441988 0.0395234;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 795 43 graph;
+#X text 928 404 Cette fonction permet d'additionner les deux musiques
+;
+#X text 907 409 <--;
+#X text 425 192 Les coordonnées en x modifie le volume d'une musique
+\, alors que celle en z modifie l'autre musique. Avec y \, on modifie
+l'amplitude d'une des musiques.;
+#X floatatom 1072 594 5 0 0 0 - - -;
+#X floatatom 892 693 5 0 0 0 - - -;
+#X connect 0 0 6 0;
+#X connect 0 0 19 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 1 2 4 0;
+#X connect 1 3 5 0;
+#X connect 8 0 12 0;
+#X connect 8 0 49 0;
+#X connect 9 0 8 0;
+#X connect 11 0 1 0;
+#X connect 11 0 0 0;
+#X connect 13 0 17 0;
+#X connect 13 0 36 0;
+#X connect 14 0 13 0;
+#X connect 15 0 18 0;
+#X connect 15 0 31 0;
+#X connect 16 0 15 0;
+#X connect 19 0 9 0;
+#X connect 19 1 14 0;
+#X connect 19 2 16 0;
+#X connect 19 3 10 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 23 0 32 0;
+#X connect 24 0 23 0;
+#X connect 26 0 25 0;
+#X connect 26 0 25 1;
+#X connect 26 0 27 0;
+#X connect 26 0 29 0;
+#X connect 28 0 27 0;
+#X connect 29 0 61 0;
+#X connect 30 0 35 0;
+#X connect 31 0 30 0;
+#X connect 32 0 26 0;
+#X connect 33 0 32 1;
+#X connect 34 0 32 1;
+#X connect 35 0 34 0;
+#X connect 36 0 38 0;
+#X connect 37 0 33 0;
+#X connect 38 0 37 0;
+#X connect 40 0 41 0;
+#X connect 41 0 42 0;
+#X connect 42 0 43 0;
+#X connect 43 0 52 0;
+#X connect 44 0 43 0;
+#X connect 45 0 25 0;
+#X connect 45 0 25 1;
+#X connect 45 0 47 0;
+#X connect 45 0 55 0;
+#X connect 46 0 45 0;
+#X connect 47 0 60 0;
+#X connect 48 0 50 0;
+#X connect 49 0 48 0;
+#X connect 50 0 51 0;
+#X connect 51 0 46 1;
+#X connect 52 0 46 0;
+#X connect 53 0 52 0;
+#X connect 54 0 55 0;
